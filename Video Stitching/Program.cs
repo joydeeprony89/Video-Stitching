@@ -17,9 +17,12 @@ namespace Video_Stitching
 
   public class Solution
   {
+    // Time - O(NLOGN)
+    // Space - O(1)
     public int VideoStitching(int[][] clips, int time)
     {
       // Step 1 - sort the clips with starting time
+      // NlogN
       Array.Sort(clips, (a, b) => { return a[0] - b[0]; });
 
       // Step 2 - find the overlapped intervals and get the max it can reach after merging the overlapped intervals.
@@ -38,6 +41,8 @@ namespace Video_Stitching
         // if at any interval our new currentMaxReach is still less than last maxReach, i.e we can not reach to the last time
         int currentMaxReach = 0;
         // if overlap is found
+        // At worst case will loop through all n nos in clips array
+        // O(N)
         while (clipsIndex < clips.Length && clips[clipsIndex][0] <= maxReach)
         {
           currentMaxReach = Math.Max(currentMaxReach, clips[clipsIndex][1]);
